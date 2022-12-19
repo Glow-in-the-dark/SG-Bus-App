@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!--     CSS stylesheet -->
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>SG Bus App</h1>
+    <div id="dateTime">Today's Date Time is:</div>
+
+    Input your BusStop Code: <input type="text" id="buscode" value="" />
+    <button type="button" onclick="getBusFromBusStop()">Try it</button> <br />
+
+    Input your Postal Code: <input type="text" id="postal" value="Postal" />
+    <button type="button" onclick="myFunction()">Try it</button> <br />
+
+    <div class="container">
+      <h2 id="location"></h2>
+      <div id="display"></div>
+    </div>
+    <script src="AllBusStops.js" charset="utf-8"></script>
+    <script src="app.js" charset="utf-8"></script>
+  </body>
+</html>
