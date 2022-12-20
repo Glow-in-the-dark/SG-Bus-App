@@ -12,17 +12,36 @@
   <body>
     <h1>SG Bus App</h1>
     <div id="dateTime">Today's Date Time is:</div>
+    <br />
+    <div style="width: 300px">
+      Input your BusStop Code:<br />
+      <input type="text" id="buscode" placeholder="Bus Stop Code" value="" />
+      <button type="button" onclick="getBusFromBusStop()">Try it</button>
+    </div>
+    <br />
 
-    Input your BusStop Code: <input type="text" id="buscode" value="" />
-    <button type="button" onclick="getBusFromBusStop()">Try it</button> <br />
+    <!-- Input your Road Name: <input type="text" id="roadName" value="" />
+    <button type="button" onclick="myFunction()">Try it</button> <br /> -->
 
-    Input your Postal Code: <input type="text" id="postal" value="Postal" />
-    <button type="button" onclick="myFunction()">Try it</button> <br />
+    <form autocomplete="off" action="/action_page.php">
+      <div class="autocomplete" style="width: 300px">
+        Input your Road Name:
+        <input
+          type="text"
+          id="RoadInput"
+          name="myCountry"
+          placeholder="Road Name"
+        />
+      </div>
+      <button type="button" onclick="getBusStopsFromRoad()">Try it</button>
+      <!-- <input type="submit" /> -->
+    </form>
 
     <div class="container">
       <h2 id="location"></h2>
       <div id="display"></div>
     </div>
+
     <script src="AllBusStops.js" charset="utf-8"></script>
     <script src="app.js" charset="utf-8"></script>
   </body>

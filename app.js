@@ -26,15 +26,37 @@
 
 // // reload the page every 30 seconds.
 // setTimeout("history.go(0);", 30000);
+
 // ---------------------------------
 // Displaying Current Date & Time
 // ---------------------------------
-// const currentTime = new Date(Date.now()); //new Date for Readable format
-// document.getElementById(
-//   "dateTime"
-// ).innerText = `Today's Date Time is: ${currentTime}`;
-// console.log(currentTime);
-// console.log(getTime(Date.now()));
+const currentDateTime = new Date(); //new Date for Readable format
+let options = {
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+  weekday: "long",
+  hour: "2-digit",
+  minute: "2-digit",
+};
+const convertReadableTime = currentDateTime.toLocaleTimeString(
+  "en-us",
+  options
+);
+console.log(convertReadableTime);
+
+// This part not sure why showing... ReferenceError: document is not defined
+document.querySelector(
+  "#dateTime"
+).innerText = `Today is: ${convertReadableTime}`;
+
+function timeDifference(timestamp1, timestamp2) {
+  var difference = timestamp1 - timestamp2;
+  var minutesDifference = Math.floor(difference / 1000 / 60);
+
+  return minutesDifference;
+}
+
 // //----------------
 
 // /////////////   Current location    ////////////////////////////// My Latitude: 1.2952565 ; Longtitude: 103.8284428
@@ -84,6 +106,10 @@
 async function getBusFromBusStop() {
   const element = document.getElementById("buscode");
   const _buscode = element.value;
+
+  // clear upon every refresh
+  document.getElementById("location").innerHTML = "";
+  document.getElementById("display").innerHTML = "";
 
   // Find the location/Description from the BusStop Code
   for (i = 0; i < allBusStops.length; i++) {
@@ -165,3 +191,33 @@ async function getBusFromBusStop() {
 //   // const result = await Promise.resolve(getBusFromBusStop(element.value));
 //   // console.log(result);
 // }
+
+/// --------------------- Search BusStops from Road Name
+
+async function getBusStopsFromRoad() {
+  // to clear previous screen
+  document.getElementById("location").innerHTML = "";
+  document.getElementById("display").innerHTML = "";
+
+  // to get the input value
+  const element = document.getElementById("RoadInput");
+  const roadNameInput = element.value;
+
+  // create a div container to hold all the <ul> and <il> inside
+  const stopsAlongRoad = document.createElement("div");
+  stopsAlongRoad.setAttribute("id", "stopsAlongRoad");
+
+  const ul = document.createElement("ul");
+  ul.setAttribute("id", "stopsAlongRoadList");
+
+  for (i = 0; i < allBusStops.length; i++) {
+    if (allBusStops[i].RoadName == roadNameInput) {
+      const li = document.createElement("li");
+      li.setAttribute("class", "rdDesc");
+      li.innerText = allBusStops[i].Description;
+      ul.append(li);
+    }
+  }
+  stopsAlongRoad.append(ul);
+  document.querySelector("#display").append(stopsAlongRoad);
+}
