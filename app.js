@@ -1,23 +1,3 @@
-// const getBusStopInBatch = async function () {
-//   fetch("http://datamall2.mytransport.sg/ltaodataservice/BusStops?$skip=0", {
-//     method: "GET", // or 'PUT'
-//     headers: {
-//       AccountKey: "LFMjNkdUT+WA0y4rAU2zjA==",
-//       accept: "application/json",
-//     },
-//   })
-//     .then((response) => response.json()) // converting the response from "String" to "Json" format
-//     .then((json) => {
-//       console.log("Success:", json);
-//     })
-//     .catch((error) => {
-//       console.error("Error:", error);
-//     });
-// };
-
-// getBusStopInBatch(0);
-//--------------------------------------------------------------------
-
 // -------------------------------------------
 // reload webpage every 3 seconds
 // setTimeout(() => {
@@ -46,16 +26,13 @@ const convertReadableTime = currentDateTime.toLocaleTimeString(
 console.log(convertReadableTime);
 
 // This part not sure why showing... ReferenceError: document is not defined
+// This function to show ( CURRENT DATE & TIME )
+
 document.querySelector(
   "#dateTime"
 ).innerText = `Today is: ${convertReadableTime}`;
 
-// function timeDifference(timestamp1, timestamp2) {
-//   var difference = timestamp1 - timestamp2;
-//   var minutesDifference = Math.floor(difference / 1000 / 60);
-
-//   return minutesDifference;
-// }
+//-------------------------
 
 function convertToAmPm(dateTimeString) {
   // Create a new JavaScript Date object from the date time string
@@ -77,49 +54,6 @@ function convertToAmPm(dateTimeString) {
 }
 
 // //----------------
-
-// /////////////   Current location    ////////////////////////////// My Latitude: 1.2952565 ; Longtitude: 103.8284428
-// (() => {
-//   const message = document.querySelector("#message");
-
-//   // check if the Geolocation API is supported
-//   if (!navigator.geolocation) {
-//     message.textContent = `Your browser doesn't support Geolocation`;
-//     message.classList.add("error");
-//     return;
-//   }
-
-//   // handle click event
-//   const btn = document.querySelector("#show");
-//   btn.addEventListener("click", function () {
-//     // get the current position
-//     navigator.geolocation.getCurrentPosition(onSuccess, onError);
-//   });
-
-//   // handle success case
-//   function onSuccess(position) {
-//     const { latitude, longitude } = position.coords;
-
-//     message.classList.add("success");
-//     message.textContent = `Your location: (${latitude},${longitude})`;
-//   }
-
-//   // handle error case
-//   function onError() {
-//     message.classList.add("error");
-//     message.textContent = `Failed to get your location!`;
-//   }
-// })();
-//-------------
-// const successCallback = (position) => {
-//   console.log(position);
-// };
-
-// const errorCallback = (error) => {
-//   console.log(error);
-// };
-
-// Navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
 
 //---------- Using Busstop Code, trigger event listener's function.
 

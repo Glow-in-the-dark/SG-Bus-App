@@ -78,58 +78,61 @@
               </h1>
 
               <div class="row">
+                <!-- This is where the Input Form Starts-->
                 <div class="col-12">
                   <form class="form">
+                    <!-- Showing DateTime-->
                     <div
                       id="dateTime"
                       class="container themed-container text-center"
                     >
                       DateTime Placeholder
                     </div>
+                    <!--Ending DateTime-->
                     <br />
-                    <div class="row mb-2">
-                      <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-4">
-                        <select
-                          name=""
-                          id=""
-                          class="form-control custom-select"
+                    <div class="container text-center">
+                      <!-- This is where people fill in for the Bus Input Code-->
+                      <div class="row justify-content-around">
+                        <input
+                          type="text"
+                          id="buscode"
+                          class="col-md-6"
+                          placeholder="Bus Stop Code"
+                          value=""
+                        />
+                        <button
+                          class="col-md-4 btn btn-primary btn-block"
+                          type="button"
+                          id="buscodeButton"
                         >
-                          <option value="">Destination</option>
-                        </select>
+                          Search
+                        </button>
                       </div>
-                      <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-5">
-                        <input
-                          type="text"
-                          class="form-control"
-                          name="daterange"
-                        />
-                      </div>
-                      <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="# of People"
-                        />
-                      </div>
-                    </div>
-                    <div class="row align-items-center">
-                      <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-4">
-                        <input
-                          type="submit"
-                          class="btn btn-primary btn-block"
-                          value="Search"
-                        />
-                      </div>
-                      <div class="col-lg-8">
-                        <label class="control control--checkbox mt-3">
-                          <span class="caption">Save this search</span>
-                          <input type="checkbox" checked="checked" />
-                          <div class="control__indicator"></div>
-                        </label>
-                      </div>
+                      <!-- Bus input Code ends here -->
+                      <br />
+                      <!-- This is where people fill in for the Road Name-->
+                      <form autocomplete="off">
+                        <div class="row justify-content-around">
+                          <input
+                            type="text"
+                            id="RoadInput"
+                            class="col-md-6"
+                            placeholder="Road Name"
+                          />
+                          <button
+                            class="col-md-4 btn btn-primary btn-block"
+                            type="button"
+                            onclick="getBusStopsFromRoad()"
+                          >
+                            Try it
+                          </button>
+                        </div>
+                      </form>
+                      <!-- Bus input Code ends here -->
                     </div>
                   </form>
                 </div>
+                <!--Input Form Ends-->
               </div>
             </div>
           </div>
@@ -171,18 +174,21 @@
       </div>
     </div>
     <!-- Hero ends-->
-    <br />
+
+    <!-- first Javascript Module -->
+    <!-- <br />
     <div style="width: 300px">
       Input your BusStop Code:<br />
       <input type="text" id="buscode" placeholder="Bus Stop Code" value="" />
       <button type="button" id="buscodeButton">Try it</button>
     </div>
-    <br />
+    <br /> -->
 
     <!-- Input your Road Name: <input type="text" id="roadName" value="" />
   <button type="button" onclick="myFunction()">Try it</button> <br /> -->
 
-    <form autocomplete="off" action="/action_page.php">
+    <!-- Second Javascript Module -->
+    <!-- <form autocomplete="off" action="/action_page.php">
       <div class="autocomplete" style="width: 300px">
         Input your Road Name:
         <input
@@ -193,8 +199,7 @@
         />
         <button type="button" onclick="getBusStopsFromRoad()">Try it</button>
       </div>
-      <!-- <input type="submit" /> -->
-    </form>
+    </form> -->
 
     <div class="container">
       <h2 id="location"></h2>
