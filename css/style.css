@@ -1,0 +1,134 @@
+.btn {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: 30px;
+  font-size: 14px;
+}
+.btn:active,
+.btn:focus {
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.btn.btn-primary {
+  background: #1a374d;
+  border-color: #1a374d;
+}
+.btn.btn-primary:hover {
+  border-color: #1f425c;
+  background: #1f425c;
+}
+.btn.btn-outline-white {
+  border: 2px solid #ffffff;
+}
+.btn.btn-outline-white:hover {
+  background: #ffffff;
+  color: #1a374d !important;
+}
+
+.text-white-opacity {
+  opacity: 0.7;
+}
+
+.form-control,
+.custom-select {
+  border: 2px solid #e9ecef;
+  font-size: 16px;
+  height: 45px;
+}
+.form-control:active,
+.form-control:focus,
+.custom-select:active,
+.custom-select:focus {
+  border-color: #1a374d;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.gutter-v1 {
+  margin-right: -20px;
+  margin-left: -20px;
+}
+@media (max-width: 991.98px) {
+  .gutter-v1 {
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+}
+.gutter-v1 > .col,
+.gutter-v1 > [class*="col-"] {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+@media (max-width: 991.98px) {
+  .gutter-v1 > .col,
+  .gutter-v1 > [class*="col-"] {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+}
+
+.gutter-v2 {
+  margin-right: -5px;
+  margin-left: -5px;
+}
+@media (max-width: 991.98px) {
+  .gutter-v2 {
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+}
+.gutter-v2 > .col,
+.gutter-v2 > [class*="col-"] {
+  padding-right: 5px;
+  padding-left: 5px;
+}
+@media (max-width: 991.98px) {
+  .gutter-v2 > .col,
+  .gutter-v2 > [class*="col-"] {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+}
+
+.spinner-border {
+  color: #1a374d;
+}
+
+/*PRELOADING------------ */
+
+.hero {
+  padding: 7rem 0 10rem 0;
+  background: #6998ab;
+  margin-bottom: 100px;
+}
+.hero.hero-inner {
+  padding: 9rem 0 7rem 0;
+  margin-bottom: auto;
+  background: #1a374d;
+}
+
+.hero h1 .typed-words {
+  position: relative;
+}
+.hero h1 .typed-words:before {
+  position: absolute;
+  height: 7px;
+  background-color: #b1d0e0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  content: "";
+}
+
+.form {
+  position: relative;
+  -webkit-box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  z-index: 9;
+  padding: 30px;
+  background: #ffffff;
+}

@@ -4,24 +4,183 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <!--     CSS stylesheet -->
-
+    <title>SG Bussstop Timing</title>
+    <!--   Other's  CSS stylesheet -->
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>SG Bus App</h1>
-    <div id="dateTime">Today's Date Time is:</div>
+    <!-- for Navigation Bar only -->
+    <nav class="navbar navbar-dark bg-dark" aria-label="First navbar example">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">SG Bus App</a>
+        <button
+          class="navbar-toggler collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarsExample01"
+          aria-controls="navbarsExample01"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="navbar-collapse collapse" id="navbarsExample01" style="">
+          <ul class="navbar-nav me-auto mb-2">
+            <li class="nav-item">
+              <a class="nav-link disabled">Disabled</a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="https://datamall.lta.gov.sg/content/datamall/en.html"
+                target="_blank"
+                >Data Source: LTA DataMall</a
+              >
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                >App Description</a
+              >
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Busstop Code: </a></li>
+                <li><a class="dropdown-item" href="#">Road Name: </a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!--Nav Bar ends-->
+    <div class="hero">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-7">
+            <div class="intro-wrap">
+              <h1 class="mb-5">
+                <span class="d-block"
+                  >Check what time your Bus is arriving,</span
+                >
+                using
+                <span class="typed-words"></span>
+              </h1>
+
+              <div class="row">
+                <div class="col-12">
+                  <form class="form">
+                    <div
+                      id="dateTime"
+                      class="container themed-container text-center"
+                    >
+                      DateTime Placeholder
+                    </div>
+                    <br />
+                    <div class="row mb-2">
+                      <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-4">
+                        <select
+                          name=""
+                          id=""
+                          class="form-control custom-select"
+                        >
+                          <option value="">Destination</option>
+                        </select>
+                      </div>
+                      <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-5">
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="daterange"
+                        />
+                      </div>
+                      <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="# of People"
+                        />
+                      </div>
+                    </div>
+                    <div class="row align-items-center">
+                      <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-4">
+                        <input
+                          type="submit"
+                          class="btn btn-primary btn-block"
+                          value="Search"
+                        />
+                      </div>
+                      <div class="col-lg-8">
+                        <label class="control control--checkbox mt-3">
+                          <span class="caption">Save this search</span>
+                          <input type="checkbox" checked="checked" />
+                          <div class="control__indicator"></div>
+                        </label>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div class="slides">
+              <img
+                src="images/hero-slider-1.jpg"
+                alt="Image"
+                class="img-fluid"
+                data-id="1"
+              />
+              <img
+                src="images/hero-slider-2.jpg"
+                alt="Image"
+                class="img-fluid"
+                data-id="2"
+              />
+              <img
+                src="images/hero-slider-3.jpg"
+                alt="Image"
+                class="img-fluid"
+                data-id="3"
+              />
+              <img
+                src="images/hero-slider-4.jpg"
+                alt="Image"
+                class="img-fluid active"
+                data-id="4"
+              />
+              <img
+                src="images/hero-slider-5.jpg"
+                alt="Image"
+                class="img-fluid"
+                data-id="5"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Hero ends-->
     <br />
     <div style="width: 300px">
       Input your BusStop Code:<br />
       <input type="text" id="buscode" placeholder="Bus Stop Code" value="" />
-      <button type="button" onclick="getBusFromBusStop()">Try it</button>
+      <button type="button" id="buscodeButton">Try it</button>
     </div>
     <br />
 
     <!-- Input your Road Name: <input type="text" id="roadName" value="" />
-    <button type="button" onclick="myFunction()">Try it</button> <br /> -->
+  <button type="button" onclick="myFunction()">Try it</button> <br /> -->
 
     <form autocomplete="off" action="/action_page.php">
       <div class="autocomplete" style="width: 300px">
@@ -32,8 +191,8 @@
           name="myCountry"
           placeholder="Road Name"
         />
+        <button type="button" onclick="getBusStopsFromRoad()">Try it</button>
       </div>
-      <button type="button" onclick="getBusStopsFromRoad()">Try it</button>
       <!-- <input type="submit" /> -->
     </form>
 
@@ -42,7 +201,44 @@
       <div id="display"></div>
     </div>
 
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+    ></script>
     <script src="AllBusStops.js" charset="utf-8"></script>
     <script src="app.js" charset="utf-8"></script>
+
+    <!-- The 3 lines of scripts below is needed for the typing thing to work-->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/typed.js"></script>
+    <script>
+      $(function () {
+        var slides = $(".slides"),
+          images = slides.find("img");
+
+        images.each(function (i) {
+          $(this).attr("data-id", i + 1);
+        });
+
+        var typed = new Typed(".typed-words", {
+          strings: ["Bus Code.", " Road Name.", " Street Name."],
+          typeSpeed: 80,
+          backSpeed: 80,
+          backDelay: 4000,
+          startDelay: 1000,
+          loop: true,
+          showCursor: true,
+          preStringTyped: (arrayPos, self) => {
+            arrayPos++;
+            console.log(arrayPos);
+            $(".slides img").removeClass("active");
+            $('.slides img[data-id="' + arrayPos + '"]').addClass("active");
+          },
+        });
+      });
+    </script>
+    <!-- 3 lines of scripts until here-->
   </body>
 </html>
