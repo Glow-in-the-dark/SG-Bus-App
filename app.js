@@ -66,10 +66,10 @@ function geoFindMe() {
     for (i = 0; i < top10Neartest.length; i++) {
       eachNearest = document.createElement("li");
       let Nearest_BusCode = top10Neartest[i].BusStopCode;
-      let Nearest_Dist = top10Neartest[i].distance * 1000;
+      let Nearest_Dist = Math.ceil(top10Neartest[i].distance * 1000);
       eachNearest.setAttribute("value", `${Nearest_BusCode}`);
       eachNearest.setAttribute("class", `nearest`);
-      eachNearest.innerHTML = `Bus Stop: ${Nearest_BusCode} ,${top10Neartest[i].Description} (${top10Neartest[i].RoadName}),  is ${Nearest_Dist}m away`;
+      eachNearest.innerHTML = `Bus Stop: ${Nearest_BusCode}, Located ${Nearest_Dist}m away, at ${top10Neartest[i].Description} (${top10Neartest[i].RoadName}),  `;
       //Add a listener, to make it clickable for events.
       eachNearest.addEventListener("click", getBusFromBusStop);
       // Add individual item into the <ul>
@@ -134,7 +134,7 @@ function geoFindMe() {
     status.textContent = "Unable to retrieve your location";
   }
 
-  // Math Function to calculate Distance between two Lat/Long
+  // Math Function to calculate Distance between two Lat/Long (Haversine formula)
   function calculateDistance(lat1, lon1, lat2, lon2, unit) {
     var radlat1 = (Math.PI * lat1) / 180;
     var radlat2 = (Math.PI * lat2) / 180;
