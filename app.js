@@ -228,7 +228,7 @@ async function getBusStopsFromRoad() {
   const element = document.getElementById("RoadInput");
   const roadNameInput = element.value;
 
-  if (b64EncodeUnicode(element.value) == "UGV0ZXI=") {
+  if (b64EncodeUnicode(element.value) == "UEVURVI=") {
     window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank");
   } else {
     // create a div container to hold all the <ul> and <il> inside
