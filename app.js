@@ -32,6 +32,10 @@ function geoFindMe() {
 
   // This part parse the posistion into Lat & Long if it is successful.
   function success(position) {
+    // clear previous results
+    document.getElementById("location").innerHTML = "";
+    document.getElementById("display").innerHTML = "";
+
     latitude = position.coords.latitude;
     longitude = position.coords.longitude;
 
@@ -39,9 +43,88 @@ function geoFindMe() {
     mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
     mapLink.textContent = `Latitude: ${latitude}, Longitude: ${longitude}`;
 
-    // to clear previous screen
-    document.getElementById("location").innerHTML = "";
-    document.getElementById("display").innerHTML = "";
+    //calculate distance between my current posistion with all the other posistions of the bustop
+    for (i = 0; i < allBusStops.length; i++) {
+      allBusStops[i].distance = calculateDistance(
+        latitude,
+        longitude,
+        allBusStops[i].Latitude,
+        allBusStops[i].Longitude,
+        "K"
+      );
+      //console.log(allBusStops[i].distance);
+    }
+
+    const sortedArray = allBusStops.sort(function (a, b) {
+      return a.distance - b.distance;
+    });
+
+    const top10Neartest = sortedArray.slice(0, 10);
+
+    nearestList = document.createElement("ul");
+    for (i = 0; i < top10Neartest.length; i++) {
+      eachNearest = document.createElement("li");
+      let Nearest_BusCode = top10Neartest[i].BusStopCode;
+      let Nearest_Dist = top10Neartest[i].distance * 1000;
+      eachNearest.setAttribute("value", `${Nearest_BusCode}`);
+      eachNearest.innerHTML = `Bus Stop: ${Nearest_BusCode} ,${top10Neartest[i].Description} (${top10Neartest[i].RoadName}),  is ${Nearest_Dist}m away`;
+      nearestList.append(eachNearest);
+      // console.log(top10Neartest[i]);
+      // console.log(top10Neartest[i].distance);
+    }
+    document.getElementById("display").append(nearestList);
+
+    //create canvas element
+    let canva = document.createElement("canvas");
+    canva.setAttribute("id", "canvas");
+    canva.setAttribute("width", "400");
+    canva.setAttribute("height", "400");
+    //grabbing the canvas element to manipulate it
+    let canvas = document.getElementById("canvas");
+    let ctx = canvas.getContext("2d");
+    //create image
+    let img = document.createElement("img");
+    const MapBox_API_Key =
+      "pk.eyJ1IjoiZ2F2aW5sb3ciLCJhIjoiY2xieHRpMjVlMGptaDNybzV3eHcwNDhzaSJ9.13u2ErBeqIR7ghaNAcKVJA";
+    const zoom_factor = "15"; // larger number means higher Zoom
+
+    img.src = `https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/${longitude},${latitude},${zoom_factor}/400x400?access_token=${MapBox_API_Key}`;
+    //img.src = "www.openstreetmap.org/#map=18/1.29525/103.82845";
+    // img.src =
+    //   "https://a.tile.openstreetmap.org/{z}/{x}/{y}.png?lat=" +
+    //   position.coords.latitude +
+    //   "&lon=" +
+    //   position.coords.longitude +
+    //   "&zoom=13";
+
+    img.onload = () => {
+      // Draw the image onto the context
+      ctx.drawImage(img, 0, 0, 400, 400);
+      ctx.beginPath();
+      const centerX = canvas.width / 2;
+      const centerY = canvas.height / 2;
+      ctx.strokeStyle = "red";
+      //Draw the Circle
+      ctx.arc(centerX, centerY, 5, 0, 2 * Math.PI);
+      ctx.stroke();
+      // ctx.fillStyle = "red";
+      // ctx.fill();
+
+      // Draw the vertical lines
+      ctx.moveTo(centerX, centerY - 10);
+      ctx.lineTo(centerX, centerY + 10);
+      ctx.stroke();
+
+      // Draw the horizontal lines
+      ctx.moveTo(centerX - 10, centerY);
+      ctx.lineTo(centerX + 10, centerY);
+      ctx.stroke();
+    };
+
+    // document.getElementById("map").append(canvas);
+    // // to clear previous screen
+    // document.getElementById("location").innerHTML = "";
+    // document.getElementById("display").innerHTML = "";
   }
 
   // if fail, shows the error.
@@ -74,51 +157,6 @@ function geoFindMe() {
 }
 
 document.querySelector("#find-me").addEventListener("click", geoFindMe);
-
-//create canvas element
-let canvas = document.getElementById("canvas");
-let ctx = canvas.getContext("2d");
-//create image
-let img = document.createElement("img");
-const MapBox_API_Key =
-  "pk.eyJ1IjoiZ2F2aW5sb3ciLCJhIjoiY2xieHRpMjVlMGptaDNybzV3eHcwNDhzaSJ9.13u2ErBeqIR7ghaNAcKVJA";
-const zoom_factor = "15"; // larger number means higher Zoom
-
-console.log(latitude);
-console.log(longitude);
-
-img.src = `https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/103.82845,1.29525,${zoom_factor}/400x400?access_token=${MapBox_API_Key}`;
-//img.src = "www.openstreetmap.org/#map=18/1.29525/103.82845";
-// img.src =
-//   "https://a.tile.openstreetmap.org/{z}/{x}/{y}.png?lat=" +
-//   position.coords.latitude +
-//   "&lon=" +
-//   position.coords.longitude +
-//   "&zoom=13";
-
-img.onload = () => {
-  // Draw the image onto the context
-  ctx.drawImage(img, 0, 0, 400, 400);
-  ctx.beginPath();
-  const centerX = canvas.width / 2;
-  const centerY = canvas.height / 2;
-  ctx.strokeStyle = "red";
-  //Draw the Circle
-  ctx.arc(centerX, centerY, 5, 0, 2 * Math.PI);
-  ctx.stroke();
-  // ctx.fillStyle = "red";
-  // ctx.fill();
-
-  // Draw the vertical lines
-  ctx.moveTo(centerX, centerY - 10);
-  ctx.lineTo(centerX, centerY + 10);
-  ctx.stroke();
-
-  // Draw the horizontal lines
-  ctx.moveTo(centerX - 10, centerY);
-  ctx.lineTo(centerX + 10, centerY);
-  ctx.stroke();
-};
 
 // ---------------------------------
 // Displaying Current Date & Time
