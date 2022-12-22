@@ -127,9 +127,6 @@ function geoFindMe() {
     };
 
     document.getElementById("map").append(canvas);
-    // // to clear previous screen
-    // document.getElementById("location").innerHTML = "";
-    // document.getElementById("display").innerHTML = "";
   }
 
   // if fail, shows the error.
