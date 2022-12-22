@@ -55,8 +55,20 @@
                 >App Description</a
               >
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Busstop Code: </a></li>
-                <li><a class="dropdown-item" href="#">Road Name: </a></li>
+                <li>
+                  <a class="dropdown-item" href="#"
+                    ><b>Busstop Code:</b> Input the Busstop code, which exist in
+                    every Busstop stand in Singapore, for Bus Services and Bus
+                    Timing.
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">
+                    <b>Road Name:</b> Key in the roadmap, and it will prompt you
+                    with the roads. Click on the roads and description for
+                    individual services and bus timings
+                  </a>
+                </li>
               </ul>
             </li>
           </ul>
@@ -69,6 +81,7 @@
         <div class="row align-items-center">
           <div class="col-lg-7">
             <div class="intro-wrap">
+              <!-- word typing animation-->
               <h1 class="mb-5">
                 <span class="d-block"
                   >Check what time your Bus is arriving,</span
@@ -129,6 +142,10 @@
                         </div>
                       </form>
                       <!-- Bus input Code ends here -->
+                      <!-- Show my Location -->
+                      <button id="find-me">Show my location</button><br />
+                      <p id="status"></p>
+                      <a id="map-link" target="_blank"></a>
                     </div>
                   </form>
                 </div>
@@ -136,6 +153,7 @@
               </div>
             </div>
           </div>
+          <!---Bus images-->
           <div class="col-lg-5">
             <div class="slides">
               <img
@@ -170,41 +188,27 @@
               />
             </div>
           </div>
+          <!--bus Images End-->
         </div>
       </div>
     </div>
     <!-- Hero ends-->
 
-    <!-- first Javascript Module -->
-    <!-- <br />
-    <div style="width: 300px">
-      Input your BusStop Code:<br />
-      <input type="text" id="buscode" placeholder="Bus Stop Code" value="" />
-      <button type="button" id="buscodeButton">Try it</button>
-    </div>
-    <br /> -->
-
-    <!-- Input your Road Name: <input type="text" id="roadName" value="" />
-  <button type="button" onclick="myFunction()">Try it</button> <br /> -->
-
-    <!-- Second Javascript Module -->
-    <!-- <form autocomplete="off" action="/action_page.php">
-      <div class="autocomplete" style="width: 300px">
-        Input your Road Name:
-        <input
-          type="text"
-          id="RoadInput"
-          name="myCountry"
-          placeholder="Road Name"
-        />
-        <button type="button" onclick="getBusStopsFromRoad()">Try it</button>
-      </div>
-    </form> -->
-
-    <div class="container">
+    <div class="container form" id="displayResults">
       <h2 id="location"></h2>
       <div id="display"></div>
+      <!-- canvas for map -->
+      <div id="map">
+        <canvas
+          id="canvas"
+          width="400"
+          height="400"
+          style="border: 1px solid #000000"
+        ></canvas>
+      </div>
     </div>
+
+    <!-- canvas for map -->
 
     <!-- JavaScript Bundle with Popper -->
     <script
@@ -237,7 +241,7 @@
           showCursor: true,
           preStringTyped: (arrayPos, self) => {
             arrayPos++;
-            console.log(arrayPos);
+            //console.log(arrayPos);
             $(".slides img").removeClass("active");
             $('.slides img[data-id="' + arrayPos + '"]').addClass("active");
           },

@@ -43,3 +43,31 @@
   padding: 30px;
   background: #ffffff;
 }
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4 {
+  font-family: "Source Serif Pro", serif;
+}
+
+#displayResults {
+  position: relative;
+  top: -50px;
+}
+
+li.rdDesc {
+  cursor: pointer;
+  color: rgb(50, 50, 82);
+  text-decoration: underline;
+}
+
+li.rdDesc:hover {
+  background-color: linear-gradient(to bottom, #fff, #ddd);
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}

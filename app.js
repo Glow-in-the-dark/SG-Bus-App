@@ -6,6 +6,119 @@
 
 // // reload the page every 30 seconds.
 // setTimeout("history.go(0);", 30000);
+//--------------------------------------------
+
+///////////////////////
+//// Geolocation
+///////////////////////
+let latitude;
+let longitude;
+
+function geoFindMe() {
+  const status = document.querySelector("#status");
+  const mapLink = document.querySelector("#map-link");
+
+  mapLink.href = "";
+  mapLink.textContent = "";
+
+  // This parts runs to check if browswer can get geolocation, and if possible, getCurrentPosistion()
+  if (!navigator.geolocation) {
+    status.textContent = "Geolocation is not supported by your browser";
+  } else {
+    status.textContent = "Locating…";
+    // getCurrentPosition() returns faster result, but if you want a more accurate result, use navigator.geolocation.watchPosition()
+    navigator.geolocation.getCurrentPosition(success, error);
+  }
+
+  // This part parse the posistion into Lat & Long if it is successful.
+  function success(position) {
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
+
+    status.textContent = "";
+    mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
+    mapLink.textContent = `Latitude: ${latitude}, Longitude: ${longitude}`;
+
+    // to clear previous screen
+    document.getElementById("location").innerHTML = "";
+    document.getElementById("display").innerHTML = "";
+  }
+
+  // if fail, shows the error.
+  function error() {
+    status.textContent = "Unable to retrieve your location";
+  }
+
+  // Math Function to calculate Distance between two Lat/Long
+  function calculateDistance(lat1, lon1, lat2, lon2, unit) {
+    var radlat1 = (Math.PI * lat1) / 180;
+    var radlat2 = (Math.PI * lat2) / 180;
+    var radlon1 = (Math.PI * lon1) / 180;
+    var radlon2 = (Math.PI * lon2) / 180;
+    var theta = lon1 - lon2;
+    var radtheta = (Math.PI * theta) / 180;
+    var dist =
+      Math.sin(radlat1) * Math.sin(radlat2) +
+      Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+    dist = Math.acos(dist);
+    dist = (dist * 180) / Math.PI;
+    dist = dist * 60 * 1.1515;
+    if (unit == "K") {
+      dist = dist * 1.609344;
+    }
+    if (unit == "N") {
+      dist = dist * 0.8684;
+    }
+    return dist;
+  }
+}
+
+document.querySelector("#find-me").addEventListener("click", geoFindMe);
+
+//create canvas element
+let canvas = document.getElementById("canvas");
+let ctx = canvas.getContext("2d");
+//create image
+let img = document.createElement("img");
+const MapBox_API_Key =
+  "pk.eyJ1IjoiZ2F2aW5sb3ciLCJhIjoiY2xieHRpMjVlMGptaDNybzV3eHcwNDhzaSJ9.13u2ErBeqIR7ghaNAcKVJA";
+const zoom_factor = "15"; // larger number means higher Zoom
+
+console.log(latitude);
+console.log(longitude);
+
+img.src = `https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/103.82845,1.29525,${zoom_factor}/400x400?access_token=${MapBox_API_Key}`;
+//img.src = "www.openstreetmap.org/#map=18/1.29525/103.82845";
+// img.src =
+//   "https://a.tile.openstreetmap.org/{z}/{x}/{y}.png?lat=" +
+//   position.coords.latitude +
+//   "&lon=" +
+//   position.coords.longitude +
+//   "&zoom=13";
+
+img.onload = () => {
+  // Draw the image onto the context
+  ctx.drawImage(img, 0, 0, 400, 400);
+  ctx.beginPath();
+  const centerX = canvas.width / 2;
+  const centerY = canvas.height / 2;
+  ctx.strokeStyle = "red";
+  //Draw the Circle
+  ctx.arc(centerX, centerY, 5, 0, 2 * Math.PI);
+  ctx.stroke();
+  // ctx.fillStyle = "red";
+  // ctx.fill();
+
+  // Draw the vertical lines
+  ctx.moveTo(centerX, centerY - 10);
+  ctx.lineTo(centerX, centerY + 10);
+  ctx.stroke();
+
+  // Draw the horizontal lines
+  ctx.moveTo(centerX - 10, centerY);
+  ctx.lineTo(centerX + 10, centerY);
+  ctx.stroke();
+};
 
 // ---------------------------------
 // Displaying Current Date & Time
@@ -138,7 +251,7 @@ async function getBusFromBusStop(e) {
     {
       method: "GET", // or 'PUT'
       headers: {
-        AccountKey: "LFMjNkdUT+WA0y4rAU2zjA==",
+        AccountKey: "LFMjNkdUT+WA0y4rAU2zjA==", // API_Keys of LTA DataMall
         accept: "application/json",
       },
     }
