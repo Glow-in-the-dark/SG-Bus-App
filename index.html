@@ -102,8 +102,19 @@
                       DateTime Placeholder
                     </div>
                     <!--Ending DateTime-->
+
                     <br />
                     <div class="container text-center">
+                      <!-- Show my Location -->
+                      <div class="row justify-content-around">
+                        <button id="find-me">
+                          Show my location & 10 Nearest Bus Stops</button
+                        ><br />
+                        <p id="status"></p>
+                        <a id="map-link" target="_blank"></a>
+                      </div>
+                      <br />
+                      <!-- Show my location ends-->
                       <!-- This is where people fill in for the Bus Input Code-->
                       <div class="row justify-content-around">
                         <input
@@ -142,11 +153,6 @@
                         </div>
                       </form>
                       <!-- Bus input Code ends here -->
-                      <br />
-                      <!-- Show my Location -->
-                      <button id="find-me">Show my location</button><br />
-                      <p id="status"></p>
-                      <a id="map-link" target="_blank"></a>
                     </div>
                   </form>
                 </div>
@@ -196,10 +202,10 @@
     <!-- Hero ends-->
 
     <div class="container form" id="displayResults">
-      <h2 id="location"></h2>
-      <div id="display"></div>
+      <h2 id="location" class="container text-center"></h2>
+      <div id="display" class=""></div>
       <!-- canvas for map -->
-      <div id="map">
+      <div id="map" class="container text-center">
         <!-- <canvas
           id="canvas"
           width="400"

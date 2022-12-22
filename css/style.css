@@ -71,3 +71,20 @@ li.rdDesc:hover {
   border-radius: 5px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
+
+li.nearest {
+  cursor: pointer;
+  color: rgb(50, 50, 82);
+  text-decoration: underline;
+}
+
+li.nearest:hover {
+  background-color: linear-gradient(to bottom, #fff, #ddd);
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* remove bullet point */
+ul {
+  list-style-type: none;
+}

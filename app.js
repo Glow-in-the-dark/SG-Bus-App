@@ -35,6 +35,7 @@ function geoFindMe() {
     // clear previous results
     document.getElementById("location").innerHTML = "";
     document.getElementById("display").innerHTML = "";
+    document.getElementById("map").innerHTML = "";
 
     latitude = position.coords.latitude;
     longitude = position.coords.longitude;
@@ -67,15 +68,19 @@ function geoFindMe() {
       let Nearest_BusCode = top10Neartest[i].BusStopCode;
       let Nearest_Dist = top10Neartest[i].distance * 1000;
       eachNearest.setAttribute("value", `${Nearest_BusCode}`);
+      eachNearest.setAttribute("class", `nearest`);
       eachNearest.innerHTML = `Bus Stop: ${Nearest_BusCode} ,${top10Neartest[i].Description} (${top10Neartest[i].RoadName}),  is ${Nearest_Dist}m away`;
+      //Add a listener, to make it clickable for events.
+      eachNearest.addEventListener("click", getBusFromBusStop);
+      // Add individual item into the <ul>
       nearestList.append(eachNearest);
-      // console.log(top10Neartest[i]);
-      // console.log(top10Neartest[i].distance);
     }
     document.getElementById("display").append(nearestList);
 
     //create canvas element
     let canva = document.createElement("canvas");
+    const map = document.getElementById("map");
+    map.append(canva);
     canva.setAttribute("id", "canvas");
     canva.setAttribute("width", "400");
     canva.setAttribute("height", "400");
@@ -121,7 +126,7 @@ function geoFindMe() {
       ctx.stroke();
     };
 
-    // document.getElementById("map").append(canvas);
+    document.getElementById("map").append(canvas);
     // // to clear previous screen
     // document.getElementById("location").innerHTML = "";
     // document.getElementById("display").innerHTML = "";
@@ -268,6 +273,7 @@ async function getBusFromBusStop(e) {
   // clear upon every refresh
   document.getElementById("location").innerHTML = "";
   document.getElementById("display").innerHTML = "";
+  document.getElementById("map").innerHTML = "";
 
   // Find the location/Description from the BusStop Code
   for (i = 0; i < allBusStops.length; i++) {
@@ -308,7 +314,7 @@ async function getBusFromBusStop(e) {
         //create bus service list
         const li = document.createElement("li");
         li.setAttribute("class", "busList");
-        li.innerText = json.Services[i].ServiceNo;
+        li.innerText = ` Bus Services number: #${json.Services[i].ServiceNo}`;
         //create bus arrival timing list
         const ul_inner = document.createElement("ul");
         ul_inner.setAttribute("id", "busArrival");
