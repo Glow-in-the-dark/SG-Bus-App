@@ -1,8 +1,3 @@
-Explanations of the technologies used
-A couple paragraphs about the general approach you took
-Link to your wireframes – sketches of major views / interfaces in your application
-Descriptions of any unsolved problems or major hurdles your team had to overcome
-
 # SG Bus App (_Reflections_)
 
 ## Technologies used.
