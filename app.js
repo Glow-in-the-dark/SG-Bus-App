@@ -229,7 +229,10 @@ async function getBusStopsFromRoad() {
   const roadNameInput = element.value;
 
   if (b64EncodeUnicode(element.value) == "UEVURVI=") {
-    window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank");
+    let new_window = UnicodeDecodeB64(
+      "aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1kUXc0dzlXZ1hjUQ=="
+    );
+    window.open(new_window, "_blank");
   } else {
     // create a div container to hold all the <ul> and <il> inside
     const stopsAlongRoad = document.createElement("div");
