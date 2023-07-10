@@ -9,10 +9,10 @@ used two different methods to get APIs
 - header (API keys in header) - LTA Datamall
 - URL ( passing API keys through URL) - MapBox, to get static map images
 
-Learning Points:
 
-1. async function, returns a promise, and would need to await on the promise to retrieve the infomation.
-2. use another async function to call another async function ( although in my case it doesn't work). So in order to retrive my variables i ended up putting all my other calculation/computation and variables inside the async function.
+Some small personal notes:
+1. async function, returns a promise, and would need to await on the promise to retrieve the information.
+2. use another async function to call another async function ( although in my case it doesn't work). So in order to retrieve my variables i ended up putting all my other calculation/computation and variables inside the async function.
 
 combining different objects returned from API,
 
@@ -56,7 +56,7 @@ CSS, and displaying of contents can be displayed in better formatting.
 
 ## Functionality
 
-For the mapping functions, besides showing the crosshair, on my location, i could also have added points of the nearest buststop and display it on the map.
+For the mapping functions, besides showing the crosshair, on my location, i could also have added points of the nearest bus stop and display it on the map.
 two way i could have done it:
 
 1. use the lat/long to find the difference in terms of distance, and also angle difference, and then map it out on static image
